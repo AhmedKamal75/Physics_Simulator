@@ -1,0 +1,3 @@
+/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles/PhysicsSimulator.dir
+/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles/edit_cache.dir
+/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles/rebuild_cache.dir
