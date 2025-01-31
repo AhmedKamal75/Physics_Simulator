@@ -193,7 +193,7 @@ class Rectangle {
          * @param outline_thickness The thickness of the outline of the rectangle.
          * @return An SFML ConvexShape object representing the rectangle.
          */
-        std::shared_ptr<sf::ConvexShape> to_vertex_array(const sf::Color& color_fill, const sf::Color& color_outline, const double outline_thickness) const {
+        std::shared_ptr<sf::ConvexShape> to_convex_shape(const sf::Color& color_fill, const sf::Color& color_outline, const double outline_thickness) const {
             std::shared_ptr<sf::ConvexShape> rectangle = std::make_shared<sf::ConvexShape>(4);
             rectangle->setPoint(0, *this->get_upper_left()->to_vector2f());
             rectangle->setPoint(1, *this->get_upper_right()->to_vector2f());

@@ -45,7 +45,7 @@ int main() {
         // Draw the x and y axes
         window.draw(*x_axis->to_vertex_array());
         window.draw(*y_axis->to_vertex_array());
-        window.draw(*boundries->to_vertex_array(sf::Color::Transparent, sf::Color::White, 3.0));
+        window.draw(*boundries->to_convex_shape(sf::Color::Transparent, sf::Color::White, 3.0));
 
         // Draw the shapes you want here
         window.draw(*l1->to_vertex_array());

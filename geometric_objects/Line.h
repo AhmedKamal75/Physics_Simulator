@@ -251,6 +251,7 @@ class Line {
          * @return True if the two lines intersect, false otherwise.
          */
         bool is_intersecting(const Line& other) const {
+            return !this->is_parallel(other);
         }
 
         /**
