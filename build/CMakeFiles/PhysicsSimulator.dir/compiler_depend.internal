@@ -7,6 +7,7 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o
  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Line.h
  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Point.h
  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Rectangle.h
+ /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Triangle.h
  /usr/include/SFML/Config.hpp
  /usr/include/SFML/Graphics.hpp
  /usr/include/SFML/Graphics/BlendMode.hpp

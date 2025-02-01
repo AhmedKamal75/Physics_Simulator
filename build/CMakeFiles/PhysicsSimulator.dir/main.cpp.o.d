@@ -255,4 +255,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: \
  /usr/include/string.h /usr/include/strings.h \
  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Point.h \
  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Circle.h \
- /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Rectangle.h
+ /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Rectangle.h \
+ /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Triangle.h \
+ /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Line.h

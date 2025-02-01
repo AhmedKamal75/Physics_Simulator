@@ -287,6 +287,26 @@ class Line {
         }
 
         /**
+         * Computes a line that is perpendicular to this line and passes through a given point.
+         * 
+         * The method first calculates the slope of the perpendicular line as -1 divided by the slope of this line.
+         * It then calculates the intercept of the perpendicular line by subtracting the product of the slope and the x-coordinate of the point
+         * from the y-coordinate of the point. The start point of the perpendicular line is set to the origin (0, 0), and the end point is set to the given point.
+         * 
+         * @param point The point that the perpendicular line should pass through.
+         * @return A shared pointer to a new Line that is perpendicular to this line and passes through the given point.
+         */
+        std::shared_ptr<Line> get_perpendicular_line(const Point& point) const {
+            double new_m = -1 / this->m;
+            double new_c = point.get_y() - new_m * point.get_x();
+            std::shared_ptr<Point> new_start = point.clone();
+            double new_x = (new_c - this->c) / (this->m - new_m);
+            double new_y = new_m * new_x + new_c;
+            std::shared_ptr<Point> new_end = std::make_shared<Point>(new_x, new_y);
+            return std::make_shared<Line>(new_start, new_end);
+        }
+
+        /**
          * Checks if this line is equal to another line.
          * 
          * A line is considered equal to another line if the two lines have the same start and end points.

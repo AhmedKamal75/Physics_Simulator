@@ -19,8 +19,19 @@ class Circle {
         void setRadius(double radius) { this->radius = radius; }
         double area() const { return M_PI * radius * radius; }
         double circumference() const { return 2 * M_PI * radius; }
+        double diameter() const { return 2 * radius; }
+        double perimeter() const { return circumference(); }
 
 
+        /**
+         * Checks if a given point is within the bounds of this Circle.
+         * 
+         * A point is considered to be within the bounds of the circle if its distance from the center of the circle is
+         * less than or equal to the radius of the circle.
+         * 
+         * @param point The point to check.
+         * @return True if the point is within the bounds of the circle, false otherwise.
+         */
         bool contains(const Point& point) const {
             return center->distanceTo(point) <= radius;
         }
@@ -109,7 +120,8 @@ class Circle {
          */
         std::shared_ptr<sf::CircleShape> to_circle_shape(const sf::Color& color) const {
             std::shared_ptr<sf::CircleShape> circle = std::make_shared<sf::CircleShape>(radius);
-            circle->setPosition(*center->to_vector2f());
+            std::shared_ptr<Point> bottom_left = std::make_shared<Point>(center->get_x() - radius, center->get_y() - radius);
+            circle->setPosition(*bottom_left->to_vector2f());
             circle->setFillColor(color);
             return circle;
         }

@@ -6,6 +6,7 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
   /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Line.h \
   /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Point.h \
   /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Rectangle.h \
+  /home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Triangle.h \
   /usr/include/SFML/Config.hpp \
   /usr/include/SFML/Graphics.hpp \
   /usr/include/SFML/Graphics/BlendMode.hpp \
@@ -402,6 +403,10 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
+/usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
 /usr/include/c++/13/bits/locale_facets_nonio.h:
 
 /usr/include/c++/13/bits/locale_facets.tcc:
@@ -488,8 +493,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/c++/13/backward/binders.h:
 
-/usr/include/c++/13/backward/auto_ptr.h:
-
 /usr/include/c++/13/bits/hash_bytes.h:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
@@ -544,6 +547,16 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/SFML/Window/Context.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/c++/13/bits/charconv.h:
+
+/usr/include/c++/13/cstdio:
+
+/usr/include/SFML/System/Vector2.hpp:
+
+/usr/include/c++/13/iostream:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h:
 
 /usr/include/SFML/Graphics/Texture.hpp:
@@ -551,14 +564,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 /usr/include/c++/13/bits/codecvt.h:
 
 /usr/include/c++/13/bits/stl_tree.h:
-
-/usr/include/SFML/Graphics/Sprite.hpp:
-
-/usr/include/SFML/Graphics/Export.hpp:
-
-/usr/include/c++/13/ext/aligned_buffer.h:
-
-/usr/include/locale.h:
 
 /usr/include/SFML/Graphics/RenderTexture.hpp:
 
@@ -572,10 +577,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/SFML/System/String.hpp:
 
-/usr/include/SFML/Graphics/Rect.inl:
-
-/usr/include/c++/13/cmath:
-
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/c++/13/bits/range_access.h:
@@ -587,6 +588,14 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 /usr/include/SFML/System/String.inl:
 
 /home/ak/Projects/cpp_projects/Physics_Simulator/main.cpp:
+
+/usr/include/SFML/Graphics/Export.hpp:
+
+/usr/include/SFML/Graphics/Sprite.hpp:
+
+/usr/include/c++/13/ext/aligned_buffer.h:
+
+/usr/include/locale.h:
 
 /usr/include/SFML/Graphics/Shape.hpp:
 
@@ -672,6 +681,16 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/math.h:
 
+/usr/include/SFML/Graphics/Rect.inl:
+
+/usr/include/c++/13/cmath:
+
+/usr/include/c++/13/backward/auto_ptr.h:
+
+/home/ak/Projects/cpp_projects/Physics_Simulator/geometric_objects/Triangle.h:
+
+/usr/include/c++/13/bits/cxxabi_forced.h:
+
 /usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
 /usr/include/SFML/Graphics/Glsl.hpp:
@@ -736,8 +755,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/SFML/System/Mutex.hpp:
 
-/usr/include/c++/13/bits/cxxabi_forced.h:
-
 /usr/include/c++/13/istream:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
@@ -761,16 +778,6 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 /usr/include/SFML/Graphics/Shader.hpp:
 
 /usr/include/SFML/System/Time.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/usr/include/c++/13/bits/charconv.h:
-
-/usr/include/c++/13/cstdio:
-
-/usr/include/SFML/System/Vector2.hpp:
-
-/usr/include/c++/13/iostream:
 
 /usr/include/c++/13/bits/ostream.tcc:
 
@@ -886,11 +893,11 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 
 /usr/include/c++/13/string:
 
-/usr/include/c++/13/bits/nested_exception.h:
-
 /usr/include/SFML/System/Vector2.inl:
 
 /usr/include/SFML/System/Thread.inl:
+
+/usr/include/c++/13/bits/nested_exception.h:
 
 /usr/include/c++/13/tuple:
 
@@ -955,7 +962,3 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: /home/ak/Projects/cpp_projects/Physi
 /usr/include/SFML/Graphics/RectangleShape.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/bits/timex.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:

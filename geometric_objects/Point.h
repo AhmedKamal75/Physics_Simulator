@@ -193,10 +193,10 @@ class Point{
          * @param radius The radius of the CircleShape to create. Defaults to 5.0f.
          * @return A shared pointer to an SFML CircleShape.
          */
-        std::shared_ptr<sf::CircleShape> point_to_circle_shape(const double radius = 5.0f) const {
+        std::shared_ptr<sf::CircleShape> point_to_circle_shape(const sf::Color& color, const double radius = 5.0f) const {
             std::shared_ptr<sf::CircleShape> circle = std::make_shared<sf::CircleShape>(radius);
             circle->setPosition(*this->to_vector2f());
-            circle->setFillColor(sf::Color::Red);
+            circle->setFillColor(color);
             return circle;
         }
 };
