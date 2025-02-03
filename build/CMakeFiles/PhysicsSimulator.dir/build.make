@@ -83,20 +83,52 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PhysicsSimulator.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ak/Projects/cpp_projects/Physics_Simulator/main.cpp -o CMakeFiles/PhysicsSimulator.dir/main.cpp.s
 
+CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o: CMakeFiles/PhysicsSimulator.dir/flags.make
+CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o: /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Point.cpp
+CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o: CMakeFiles/PhysicsSimulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o -MF CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o.d -o CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o -c /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Point.cpp
+
+CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Point.cpp > CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.i
+
+CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Point.cpp -o CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.s
+
+CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o: CMakeFiles/PhysicsSimulator.dir/flags.make
+CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o: /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Line.cpp
+CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o: CMakeFiles/PhysicsSimulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o -MF CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o.d -o CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o -c /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Line.cpp
+
+CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Line.cpp > CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.i
+
+CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Line.cpp -o CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.s
+
 # Object files for target PhysicsSimulator
 PhysicsSimulator_OBJECTS = \
-"CMakeFiles/PhysicsSimulator.dir/main.cpp.o"
+"CMakeFiles/PhysicsSimulator.dir/main.cpp.o" \
+"CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o" \
+"CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o"
 
 # External object files for target PhysicsSimulator
 PhysicsSimulator_EXTERNAL_OBJECTS =
 
 PhysicsSimulator: CMakeFiles/PhysicsSimulator.dir/main.cpp.o
+PhysicsSimulator: CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o
+PhysicsSimulator: CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o
 PhysicsSimulator: CMakeFiles/PhysicsSimulator.dir/build.make
 PhysicsSimulator: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1
 PhysicsSimulator: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1
 PhysicsSimulator: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
 PhysicsSimulator: CMakeFiles/PhysicsSimulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable PhysicsSimulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ak/Projects/cpp_projects/Physics_Simulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable PhysicsSimulator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PhysicsSimulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

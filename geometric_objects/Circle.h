@@ -2,14 +2,18 @@
 #define CIRCLE_H
 
 #include "Point.h"
+#include "Line.h"
 #include <memory>
 #include <cmath>
+
 
 
 class Circle {
     private:
         std::shared_ptr<Point> center;
         double radius;
+        double epsilon_error = 1e-20; // Small value to handle floating-point errors, infinitely close to 0.
+
 
     public:
         Circle(std::shared_ptr<Point> center, double radius) : center(center), radius(radius) {}
@@ -72,6 +76,52 @@ class Circle {
             this->radius *= factor;
         }
 
+        /*
+        * Solves for the intersection point between this Circle and a given Line.
+        You start with the circle
+              (x – a)² + (y – b)² = r²
+            and the line
+              y = m·x + c.
+
+            Substitute y from the line into the circle to get
+              (x – a)² + (m·x + c – b)² = r².
+
+            Expanding gives
+              x² – 2a·x + a² + m²·x² + 2m(c – b)x + (c – b)² = r².
+
+            Rearranging terms leads to the quadratic
+              [1 + m²]·x² + [–2a + 2m(c – b)]·x + [a² + (c – b)² – r²] = 0.
+        */
+
+        std::shared_ptr<Line> solve_with(const Line& line) const {
+            double m = line.get_slope();
+            double c = line.get_intercept();
+
+            double a = this->center->get_x();
+            double b = this->center->get_y();
+            double r = radius;
+
+            std::vector<double> roots = Utilities::solve_quadratic(
+                1 + m * m, 
+                -2 * a + 2 * m * (c - b), 
+                a * a + (c - b) * (c - b) - r * r
+            );
+
+            if (roots.size() == 1) {
+                return std::make_shared<Line>(
+                    std::make_shared<Point>(roots[0], m * roots[0] + c),
+                    std::make_shared<Point>(roots[0], m * roots[0] + c)
+                );
+            } else if (roots.size() == 2) { 
+                return std::make_shared<Line>( 
+                    std::make_shared<Point>(roots[0], m * roots[0] + c),
+                    std::make_shared<Point>(roots[1], m * roots[1] + c)
+                );
+            }
+            return std::make_shared<Line>(std::make_shared<Point>(), std::make_shared<Point>()); // should never happen
+        }
+
+
 
         /**
          * Determines if this Circle is tangent to another Circle.
@@ -83,7 +133,7 @@ class Circle {
          * @return True if the circles are tangent, false otherwise.
          */
         bool is_tangent(const Circle& other) const {
-            return center->distanceTo(*other.center) == radius + other.radius;
+            return abs(center->distanceTo(*other.center) - radius + other.radius) <= this->epsilon_error;
         }
 
 

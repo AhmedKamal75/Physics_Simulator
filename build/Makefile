@@ -153,6 +153,54 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+shapes/Line.o: shapes/Line.cpp.o
+.PHONY : shapes/Line.o
+
+# target to build an object file
+shapes/Line.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o
+.PHONY : shapes/Line.cpp.o
+
+shapes/Line.i: shapes/Line.cpp.i
+.PHONY : shapes/Line.i
+
+# target to preprocess a source file
+shapes/Line.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.i
+.PHONY : shapes/Line.cpp.i
+
+shapes/Line.s: shapes/Line.cpp.s
+.PHONY : shapes/Line.s
+
+# target to generate assembly for a file
+shapes/Line.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.s
+.PHONY : shapes/Line.cpp.s
+
+shapes/Point.o: shapes/Point.cpp.o
+.PHONY : shapes/Point.o
+
+# target to build an object file
+shapes/Point.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o
+.PHONY : shapes/Point.cpp.o
+
+shapes/Point.i: shapes/Point.cpp.i
+.PHONY : shapes/Point.i
+
+# target to preprocess a source file
+shapes/Point.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.i
+.PHONY : shapes/Point.cpp.i
+
+shapes/Point.s: shapes/Point.cpp.s
+.PHONY : shapes/Point.s
+
+# target to generate assembly for a file
+shapes/Point.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.s
+.PHONY : shapes/Point.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +213,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... shapes/Line.o"
+	@echo "... shapes/Line.i"
+	@echo "... shapes/Line.s"
+	@echo "... shapes/Point.o"
+	@echo "... shapes/Point.i"
+	@echo "... shapes/Point.s"
 .PHONY : help
 
 

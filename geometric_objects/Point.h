@@ -5,12 +5,14 @@
 #include <memory>
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include "Utilities.h"
 
 
-class Point{
+class Point : public std::enable_shared_from_this<Point> {
     private:
         double x;
         double y;
+        double epsilon_error = 1e-20; // Small value to handle floating-point errors, infinitely close to 0.
 
     public:
         Point(double x = 0.0, double y = 0.0) : x(x), y(y) {}
@@ -56,20 +58,25 @@ class Point{
          *
          * @param x The new x-coordinate for this Point.
          * @param y The new y-coordinate for this Point.
+         * @return A shared pointer to this Point.
          */
-        void set(const double x, const double y) {
+        std::shared_ptr<Point> set(const double x, const double y) {
             this->x = x;
             this->y = y;
+            return shared_from_this();
         }
 
         /**
          * Sets the coordinates of this Point to be equal to the coordinates of another Point.
          *
          * @param other The Point whose coordinates are to be copied.
+         * 
+         * @return A shared pointer to this Point.
          */
-        void set(const Point& other) {
+        std::shared_ptr<Point> set(const Point& other) {
             x = other.x;
             y = other.y;
+            return shared_from_this();
         }
 
 
@@ -78,10 +85,13 @@ class Point{
          *
          * @param dx The distance to move the point along the x-axis.
          * @param dy The distance to move the point along the y-axis.
+         * 
+         * @return A shared pointer to this Point.
          */
-        void move(const double dx, const double dy) {
+        std::shared_ptr<Point> move(const double dx, const double dy) {
             x += dx;
             y += dy;
+            return shared_from_this();
         }
 
         /**
@@ -89,10 +99,13 @@ class Point{
          * This is equivalent to adding the x-coordinates and adding the y-coordinates.
          *
          * @param other The Point to add to this Point.
+         * 
+         * @return A shared pointer to this Point.
          */
-        void add(const Point& other) {
+        std::shared_ptr<Point> add(const Point& other) {
             x += other.x;
             y += other.y;
+            return shared_from_this();
         }
 
         /**
@@ -100,52 +113,79 @@ class Point{
          * This is equivalent to adding the negative of the given point to this point.
          * 
          * @param other The Point to subtract from this Point.
+         * 
+         * @return A shared pointer to this Point.
          */
-        void subtract(const Point& other) {
+        std::shared_ptr<Point> subtract(const Point& other) {
             x -= other.x;
             y -= other.y;
+            return shared_from_this();
+        }
+
+        double dot(const Point& other) const {
+            return x * other.x + y * other.y;
         }
         
         /**
          * Scales the point by a given factor.
          * This is useful for multiplying a point by a scalar, or scaling a point to a given size.
          * @param factor The factor to scale the point by.
+         * 
+         * @return A shared pointer to this Point.
          */
-        void scale(const double factor) {
+        std::shared_ptr<Point> scale(const double factor) {
             x *= factor;
             y *= factor;
+            return shared_from_this();
         }
 
         /**
-         * Normalize the point, scaling it so that its magnitude is 1.
-         * This is useful for turning a point into a unit vector.
+         * Normalizes this Point, so that it has magnitude 1.
+         * This is useful for getting a unit vector in the direction of the point.
+         * @return A shared pointer to this Point.
          */
-        void normalize() {
+        std::shared_ptr<Point> normalize() {
             double magnitude = std::sqrt(x*x + y*y);
+            
+            // Handle the case where the magnitude is 0
+            if (magnitude == 0) return shared_from_this();
+            
+            // Normalize the point
             x /= magnitude;
             y /= magnitude;
+            return shared_from_this();
         }
 
         /**
-         * Rotate the point by a given angle (in radians) around the origin.
-         * @param angle The angle in radians to rotate the point.
+         * Rotates this Point around the origin by a given angle.
+         * The rotation is performed in the 2D plane using the standard rotation matrix.
+         *
+         * @param angle The angle in radians by which to rotate the point.
+         * 
+         * @return A shared pointer to this Point after rotation.
          */
-        void rotate(const double angle) { 
+        std::shared_ptr<Point> rotate(const double angle) { 
             double new_x = x * std::cos(angle) - y * std::sin(angle);
             double new_y = x * std::sin(angle) + y * std::cos(angle);
             x = new_x;
             y = new_y;
+            return shared_from_this();
         }
 
+
         /**
-         * Rotate the point by a given angle (in radians) around a given center point.
-         * @param center The point to rotate around.
-         * @param angle The angle in radians to rotate the point.
+         * Rotates this Point around the given center point by a given angle.
+         * The rotation is performed in the 2D plane using the standard rotation matrix.
+         *
+         * @param center The point around which to rotate the point.
+         * @param angle The angle in radians by which to rotate the point.
+         * 
+         * @return A shared pointer to this Point after rotation.
          */
-        void rotate(const Point& center, const double angle) { // angle in radians
+        std::shared_ptr<Point> rotate(const Point& center, const double angle) { // angle in radians
             // Translate point to origin
-            double translated_x = x - center.get_x();
-            double translated_y = y - center.get_y();
+            double translated_x = x - center.get_x() + this->epsilon_error;
+            double translated_y = y - center.get_y() + this->epsilon_error;
 
             // Apply rotation
             double new_x = translated_x * std::cos(angle) - translated_y * std::sin(angle);
@@ -154,6 +194,8 @@ class Point{
             // Translate back to the original position
             x = new_x + center.get_x();
             y = new_y + center.get_y();
+
+            return shared_from_this();
         }
 
         /**
@@ -172,7 +214,7 @@ class Point{
          * @return True if the two points are equal, false otherwise.
          */
         bool is_equal(const Point& other) const {
-            return (x == other.x) && (y == other.y);
+            return (this->x - other.x < epsilon_error) && (this->y - other.y < epsilon_error);
         }
 
         /**
@@ -202,8 +244,4 @@ class Point{
 };
 
 
-
-
-
-
-#endif
+#endif // POINT_H
