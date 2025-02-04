@@ -124,7 +124,7 @@ std::shared_ptr<sf::CircleShape> Point::point_to_circle_shape(const sf::Color& c
     return circle;
 }
 
-std::string Point::print() const {
+std::string Point::to_string() const {
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
 }
 

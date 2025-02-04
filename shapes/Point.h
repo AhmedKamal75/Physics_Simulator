@@ -39,7 +39,7 @@ class Point : public Shape, public std::enable_shared_from_this<Point> {
         std::shared_ptr<sf::Vector2f> to_vector2f() const;
         std::shared_ptr<sf::CircleShape> point_to_circle_shape(const sf::Color& color, const double radius = 5.0f) const;
         
-        std::string print() const;
+        std::string to_string() const;
         bool is_equal(const std::shared_ptr<Point> other) const;
 };
 

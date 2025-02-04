@@ -5,6 +5,7 @@
 #include "shapes/Shape.h"
 #include "shapes/Point.h"
 #include "shapes/Line.h"
+#include "shapes/Triangle.h"
 
 int main() {
     // Create a window
@@ -90,5 +91,3 @@ int main() {
 // cmake -S . -B build
 // cmake --build build
 // ./build/PhysicsSimulator
-
-

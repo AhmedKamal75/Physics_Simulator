@@ -21,7 +21,7 @@ class Line : public Shape, public std::enable_shared_from_this<Line> {
         std::shared_ptr<Line> set_start(std::shared_ptr<Point> start);
         std::shared_ptr<Line> set_end(std::shared_ptr<Point> end);
         double length() const;
-        std::string print() const;
+        std::string to_string() const;
         std::shared_ptr<Line> clone() const;
         std::shared_ptr<Line> set(const std::shared_ptr<Point> start, const std::shared_ptr<Point> end);
         std::shared_ptr<Line> set(const std::shared_ptr<Line> other);

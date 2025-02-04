@@ -201,6 +201,30 @@ shapes/Point.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.s
 .PHONY : shapes/Point.cpp.s
 
+shapes/Triangle.o: shapes/Triangle.cpp.o
+.PHONY : shapes/Triangle.o
+
+# target to build an object file
+shapes/Triangle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Triangle.cpp.o
+.PHONY : shapes/Triangle.cpp.o
+
+shapes/Triangle.i: shapes/Triangle.cpp.i
+.PHONY : shapes/Triangle.i
+
+# target to preprocess a source file
+shapes/Triangle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Triangle.cpp.i
+.PHONY : shapes/Triangle.cpp.i
+
+shapes/Triangle.s: shapes/Triangle.cpp.s
+.PHONY : shapes/Triangle.s
+
+# target to generate assembly for a file
+shapes/Triangle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Triangle.cpp.s
+.PHONY : shapes/Triangle.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +243,9 @@ help:
 	@echo "... shapes/Point.o"
 	@echo "... shapes/Point.i"
 	@echo "... shapes/Point.s"
+	@echo "... shapes/Triangle.o"
+	@echo "... shapes/Triangle.i"
+	@echo "... shapes/Triangle.s"
 .PHONY : help
 
 

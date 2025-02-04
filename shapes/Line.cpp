@@ -35,8 +35,8 @@ double Line::length() const{
     return this->start->distance_to(this->end);
 }
 
-std::string Line::print() const{
-    return "Line (y = " + std::to_string(this->get_slope()) + " * x + " + std::to_string(this->get_intercept()) + "): " + this->start->print() + " -> " + this->end->print();
+std::string Line::to_string() const{
+    return "Line (y = " + std::to_string(this->get_slope()) + " * x + " + std::to_string(this->get_intercept()) + "): " + this->start->to_string() + " -> " + this->end->to_string();
 }
 
 std::shared_ptr<Line> Line::clone() const{
