@@ -71,9 +71,20 @@ std::shared_ptr<Line> Line::scale(const double factor){
     return shared_from_this();
 }
 
+std::shared_ptr<Line> Line::extend(const double factor) {
+    // Compute the midpoint M of the current line.
+    auto mid = this->start->mid_point_to(this->end);
 
-// TODO: implement this in the future after implementing Circle
-std::shared_ptr<Line> Line::extend(const double factor){
+    // Compute the new endpoints by scaling the vector from M to each endpoint.
+    double new_start_x = mid->get_x() + factor * (this->start->get_x() - mid->get_x());
+    double new_start_y = mid->get_y() + factor * (this->start->get_y() - mid->get_y());
+    double new_end_x   = mid->get_x() + factor * (this->end->get_x() - mid->get_x());
+    double new_end_y   = mid->get_y() + factor * (this->end->get_y() - mid->get_y());
+
+    this->start->set(new_start_x, new_start_y);
+    this->end->set(new_end_x, new_end_y);
+    calculate_slope_intercept();
+
     return shared_from_this();
 }
 
@@ -100,8 +111,6 @@ void Line::calculate_slope_intercept(){
     } else {
         this->m = (this->end->get_y() - this->start->get_y()) / dx;
         this->c = this->start->get_y() - this->m * this->start->get_x();
-
-        if (abs(this->m) <= EPSILON_ERROR) this->m = 0;
     }
 }
 
@@ -130,55 +139,96 @@ bool Line::is_parallel(const std::shared_ptr<Line> other) const {
     return std::abs(this->m - other->get_slope()) < Shape::EPSILON_ERROR; 
 }
 
+
 bool Line::is_perpendicular(const std::shared_ptr<Line> other) const {
-    // Handle vertical lines: A vertical line is perpendicular to a horizontal line.
-    bool thisIsVertical = std::abs(std::abs(this->m) - ((1-EPSILON_ERROR) / (EPSILON_ERROR)) >= EPSILON_ERROR);
-    bool otherIsVertical = std::abs(std::abs(other->get_slope()) - (1.0 / EPSILON_ERROR) >= EPSILON_ERROR);
-    bool thisIsHorizontal = std::abs(this->m) <= Shape::EPSILON_ERROR;
-    bool otherIsHorizontal = std::abs(other->get_slope()) <= Shape::EPSILON_ERROR;
+    bool thisHorizontal = std::abs(this->get_slope()) < EPSILON_ERROR;
+    bool otherHorizontal = std::abs(other->get_slope()) < EPSILON_ERROR;
+    bool thisVertical = std::abs(this->get_slope()) > 1.0/EPSILON_ERROR;
+    bool otherVertical = std::abs(other->get_slope()) > 1.0/EPSILON_ERROR;
 
-    if (thisIsVertical && otherIsHorizontal) return true;
-    if (thisIsHorizontal && otherIsVertical) return true;
-    if (thisIsVertical || otherIsVertical) return false; // One vertical, one not, then not perpendicular
-
-    return std::abs(this->m * other->get_slope() + 1) <= Shape::EPSILON_ERROR;
+    // A horizontal line is perpendicular to a vertical line.
+    if ((thisHorizontal && otherVertical) || (thisVertical && otherHorizontal))
+        return true;
+    // For non-special cases, check if the product of slopes is approximately -1.
+    if (!thisVertical && !otherVertical && !thisHorizontal && !otherHorizontal)
+        return std::abs(this->get_slope() * other->get_slope() + 1) < EPSILON_ERROR;
+    
+    return false;
 }
+
 
 bool Line::is_intersecting(const std::shared_ptr<Line> other) const{
     return !this->is_parallel(other);
 }
 
-bool Line::between_bounds(const std::shared_ptr<Point> point) const{
-    return ((point->get_x() >= this->start->get_x() && point->get_x() <= this->end->get_x()) && 
-            (point->get_y() >= this->start->get_y() && point->get_y() <= this->end->get_y()) ||
-            ((point->get_x() >= this->end->get_x() && point->get_x() <= this->start->get_x()) &&
-             (point->get_y() >= this->end->get_y() && point->get_y() <= this->start->get_y())));
+bool Line::between_bounds(const std::shared_ptr<Point> point) const {
+    double min_x = std::min(this->start->get_x(), this->end->get_x());
+    double max_x = std::max(this->start->get_x(), this->end->get_x());
+    double min_y = std::min(this->start->get_y(), this->end->get_y());
+    double max_y = std::max(this->start->get_y(), this->end->get_y());
+    
+    return (point->get_x() >= min_x && point->get_x() <= max_x &&
+            point->get_y() >= min_y && point->get_y() <= max_y);
 }
 
-std::shared_ptr<Point> Line::intersection(const std::shared_ptr<Line> other) const{
-    if (!this->is_intersecting(other)){
-        throw std::runtime_error("Lines do not intersect");
-        return this->start; 
+
+std::shared_ptr<Point> Line::intersection(const std::shared_ptr<Line> other) const {
+    if (std::abs(this->get_slope() - other->get_slope()) < EPSILON_ERROR) {
+        throw std::runtime_error("Lines are parallel or coincident; no unique intersection exists");
     }
-    double intersection_x = (other->get_intercept() - this->get_intercept()) / (this->get_slope() - other->get_slope() + EPSILON_ERROR);
+    double intersection_x = (other->get_intercept() - this->get_intercept()) / (this->get_slope() - other->get_slope());
     double intersection_y = this->get_slope() * intersection_x + this->get_intercept();
     return std::make_shared<Point>(intersection_x, intersection_y);
 }
 
-std::shared_ptr<Line> Line::get_perpendicular_line(const std::shared_ptr<Point> point) const {
-    // Handle horizontal line case correctly.
-    if (std::abs(this->get_slope()) < Shape::EPSILON_ERROR) {
-        return std::make_shared<Line>(point, std::make_shared<Point>(point->get_x() + 1, point->get_y())); // Vertical line
-    } else if (std::abs(this->get_slope()) > 1.0 / Shape::EPSILON_ERROR){ //Handle vertical line
-        return std::make_shared<Line>(point, std::make_shared<Point>(point->get_x(), point->get_y()+1)); // Horizontal line
-    }
 
-    double new_m = -1.0 / this->get_slope();
-    double new_c = point->get_y() - new_m * point->get_x();
-    std::shared_ptr<Point> new_start = point; // No need to clone here; it's already a shared pointer.
-    std::shared_ptr<Point> new_end = std::make_shared<Point>(point->get_x() + 1, new_m * (point->get_x() + 1) + new_c);
-    return std::make_shared<Line>(new_start, new_end);
+
+std::shared_ptr<Line> Line::get_perpendicular_line(const std::shared_ptr<Point> point) const {
+    // Retrieve the slope of the current line.
+    double slope = this->get_slope();    
+
+    // Case 1: The current line is (nearly) horizontal.
+    // A horizontal line (slope ≈ 0) has a perpendicular that is vertical.
+    // A vertical line is defined by a constant x coordinate.
+    if (std::abs(slope) < EPSILON_ERROR) {
+        // Create a vertical line through 'point'. 
+        // We choose an arbitrary offset in y (here, +1) to define the second point.
+        return std::make_shared<Line>(
+            point,
+            std::make_shared<Point>(point->get_x(), point->get_y() + 1)
+        );
+    }
+    
+    // Case 2: The current line is (nearly) vertical.
+    // A vertical line (undefined or infinite slope) has a perpendicular that is horizontal.
+    // A horizontal line is defined by a constant y coordinate.
+    if (std::abs(slope) >= (1.0 - EPSILON_ERROR) / EPSILON_ERROR) {
+        // Create a horizontal line through 'point'.
+        // We choose an arbitrary offset in x (here, +1) to define the second point.
+        return std::make_shared<Line>(
+            point,
+            std::make_shared<Point>(point->get_x() + 1, point->get_y())
+        );
+    }
+    
+    // Case 3: General case.
+    // The slope of the perpendicular line is given by -1 / slope.
+    double perpendicular_slope = -1.0 / slope;
+    double perpendicular_intercept = point->get_y() - perpendicular_slope * point->get_x();
+    
+    // To construct the line, we need a second point. 
+    // We choose the intersection point.
+    double newX = (perpendicular_intercept - this->get_intercept()) / (this->get_slope() - perpendicular_slope);
+    double newY = perpendicular_slope * newX + perpendicular_intercept;
+    
+    return std::make_shared<Line>(
+        point,
+        std::make_shared<Point>(newX, newY)
+    );
 }
+
+
+
 
 
 double Line::evaluate_y(const double x) const{
@@ -190,9 +240,12 @@ double Line::evaluate_y(const double x) const{
     return this->get_slope() * x + this->get_intercept();
 }
 
-double Line::evaluate_x(const double y) const{
-    if (abs(this->get_slope()) < EPSILON_ERROR) return 0.0;
-    return (y - this->get_intercept()) / (this->get_slope());
+double Line::evaluate_x(const double y) const {
+    // For a horizontal line, evaluating x for an arbitrary y is undefined.
+    if (std::abs(this->end->get_y() - this->start->get_y()) < EPSILON_ERROR) {
+        throw std::runtime_error("Cannot evaluate x for a horizontal line");
+    }
+    return (y - this->get_intercept()) / this->get_slope();
 }
 
 bool Line::is_equal(const std::shared_ptr<Line> other) const{

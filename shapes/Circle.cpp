@@ -43,7 +43,7 @@ void Circle::move(const double dx, const double dy) {
     this->center->move(dx, dy);
 }
 
-void Circle::scale(const double factor) {
+void Circle::extend(const double factor) {
     this->radius *= factor;
 }
 

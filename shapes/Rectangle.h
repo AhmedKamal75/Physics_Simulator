@@ -13,6 +13,8 @@ class Rectangle : public Shape, public std::enable_shared_from_this<Rectangle> {
 
     public:
         Rectangle(std::shared_ptr<Point> upper_left, std::shared_ptr<Point> lower_right);
+        Rectangle(std::shared_ptr<Point> upper_left, std::shared_ptr<Point> upper_right, std::shared_ptr<Point> lower_right, std::shared_ptr<Point> lower_left);
+        Rectangle(const std::shared_ptr<Rectangle> other);
         std::shared_ptr<Point> get_upper_left() const;
         std::shared_ptr<Point> get_lower_right() const;
         std::shared_ptr<Point> get_upper_right() const;
@@ -22,6 +24,7 @@ class Rectangle : public Shape, public std::enable_shared_from_this<Rectangle> {
         std::shared_ptr<Rectangle> clone() const;
         std::shared_ptr<Rectangle> move(const std::shared_ptr<Point> offset);
         std::shared_ptr<Rectangle> scale(const double factor);
+        std::shared_ptr<Rectangle> extend(const double factor);
         std::shared_ptr<Rectangle> rotate(const std::shared_ptr<Point> center, const double angle);
         std::shared_ptr<Rectangle> rotate_origin(const double angle);
         std::shared_ptr<Rectangle> rotate_center(const double angle);

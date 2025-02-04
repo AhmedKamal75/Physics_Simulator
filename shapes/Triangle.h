@@ -25,6 +25,7 @@ class Triangle : public Shape, public std::enable_shared_from_this<Triangle> {
         std::shared_ptr<Triangle> clone() const;
         std::shared_ptr<Triangle> move(const std::shared_ptr<Point> offset);
         std::shared_ptr<Triangle> scale(const double factor);
+        std::shared_ptr<Triangle> extend(const double factor);
         std::shared_ptr<Triangle> rotate(const std::shared_ptr<Point> center, const double angle);
         std::shared_ptr<Triangle> rotate_origin(const double angle);
         std::shared_ptr<Triangle> rotate_center(const double angle);

@@ -80,6 +80,28 @@ std::shared_ptr<Triangle> Triangle::scale(const double factor) {
     return shared_from_this();
 }
 
+std::shared_ptr<Triangle> Triangle::extend(const double factor) {
+    std::shared_ptr<Point> centroid = this->centroid();
+
+        // Compute the new positions for each vertex.
+    double new_p1_x = centroid->get_x() + factor * (p1->get_x() - centroid->get_x());
+    double new_p1_y = centroid->get_y() + factor * (p1->get_y() - centroid->get_y());
+    double new_p2_x = centroid->get_x() + factor * (p2->get_x() - centroid->get_x());
+    double new_p2_y = centroid->get_y() + factor * (p2->get_y() - centroid->get_y());
+    double new_p3_x = centroid->get_x() + factor * (p3->get_x() - centroid->get_x());
+    double new_p3_y = centroid->get_y() + factor * (p3->get_y() - centroid->get_y());
+
+    this->p1->set(new_p1_x, new_p1_y);
+    this->p2->set(new_p2_x, new_p2_y);
+    this->p3->set(new_p3_x, new_p3_y);
+
+    // auto new_p1 = std::make_shared<Point>(new_p1_x, new_p1_y);
+    // auto new_p2 = std::make_shared<Point>(new_p2_x, new_p2_y);
+    // auto new_p3 = std::make_shared<Point>(new_p3_x, new_p3_y);
+
+    return shared_from_this();
+}
+
 std::shared_ptr<Triangle> Triangle::rotate(const std::shared_ptr<Point> center, const double angle) {
     this->p1->rotate(center, angle);
     this->p2->rotate(center, angle);

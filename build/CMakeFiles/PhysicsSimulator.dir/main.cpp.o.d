@@ -259,4 +259,5 @@ CMakeFiles/PhysicsSimulator.dir/main.cpp.o: \
  /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Point.h \
  /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Triangle.h \
  /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Rectangle.h \
- /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Circle.h
+ /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Circle.h \
+ /home/ak/Projects/cpp_projects/Physics_Simulator/shapes/Line.h

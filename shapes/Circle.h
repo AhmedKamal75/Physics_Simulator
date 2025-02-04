@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef CIRCLE_H
+#define CIRCLE_H
 
 
 #include "Line.h"
@@ -21,7 +21,7 @@ class Circle : public Shape, public std::enable_shared_from_this<Circle> {
         bool contains(const std::shared_ptr<Point> point) const;
         bool is_intersecting(const std::shared_ptr<Circle> other) const;
         void move (const double dx, const double dy);
-        void scale (const double factor);
+        void extend (const double factor);
         std::shared_ptr<Line> solve_with(const std::shared_ptr<Line> line) const;
         bool is_tangent(const std::shared_ptr<Circle> other) const;
         bool is_disjoint(const std::shared_ptr<Circle> other) const;
@@ -32,4 +32,4 @@ class Circle : public Shape, public std::enable_shared_from_this<Circle> {
 };
 
 
-#endif // RECTANGLE_H
+#endif // CIRCLE_H

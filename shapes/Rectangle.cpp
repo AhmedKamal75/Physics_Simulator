@@ -6,6 +6,16 @@ Rectangle::Rectangle(std::shared_ptr<Point> upper_left, std::shared_ptr<Point> l
     this->upper_right = std::make_shared<Point>(lower_right->get_x(),upper_left->get_y());
 }
 
+Rectangle::Rectangle(std::shared_ptr<Point> upper_left, std::shared_ptr<Point> upper_right, std::shared_ptr<Point> lower_right, std::shared_ptr<Point> lower_left) : upper_left(upper_left), upper_right(upper_right), lower_right(lower_right), lower_left(lower_left) {}
+
+Rectangle::Rectangle(const std::shared_ptr<Rectangle> other) {
+    this->upper_left = other->get_upper_left();
+    this->upper_right = other->get_upper_right();
+    this->lower_right = other->get_lower_right();
+    this->lower_left = other->get_lower_left();
+}
+
+
 std::shared_ptr<Point> Rectangle::get_upper_left() const {
     return upper_left;
 }
@@ -47,6 +57,48 @@ std::shared_ptr<Rectangle> Rectangle::scale(const double factor) {
     this->lower_right->scale(factor);
     this->upper_right->scale(factor);
     this->lower_left->scale(factor);
+    return shared_from_this();
+}
+
+std::shared_ptr<Rectangle> Rectangle::extend(const double factor) {
+    // Compute the centroid of the rectangle.
+    double cx = (upper_left->get_x() + upper_right->get_x() +
+                 lower_left->get_x() + lower_right->get_x()) / 4.0;
+    double cy = (upper_left->get_y() + upper_right->get_y() +
+                 lower_left->get_y() + lower_right->get_y()) / 4.0;
+    auto centroid = std::make_shared<Point>(cx, cy);
+
+    // Compute new positions for each vertex.
+    auto new_upper_left = std::make_shared<Point>(
+        cx + factor * (upper_left->get_x() - cx),
+        cy + factor * (upper_left->get_y() - cy)
+    );
+    auto new_upper_right = std::make_shared<Point>(
+        cx + factor * (upper_right->get_x() - cx),
+        cy + factor * (upper_right->get_y() - cy)
+    );
+    auto new_lower_left = std::make_shared<Point>(
+        cx + factor * (lower_left->get_x() - cx),
+        cy + factor * (lower_left->get_y() - cy)
+    );
+    auto new_lower_right = std::make_shared<Point>(
+        cx + factor * (lower_right->get_x() - cx),
+        cy + factor * (lower_right->get_y() - cy)
+    );
+
+    // Optionally, if you want to ensure the points are ordered consistently,
+    // you can sort the four new points by their angle with respect to the centroid.
+    // For example:
+    
+    std::vector<std::shared_ptr<Point>> vertices = { new_upper_left, new_upper_right, new_lower_right, new_lower_left };
+    std::sort(vertices.begin(), vertices.end(), [&](const std::shared_ptr<Point>& a, const std::shared_ptr<Point>& b) {
+        return std::atan2(a->get_y() - cy, a->get_x() - cx) < std::atan2(b->get_y() - cy, b->get_x() - cx);
+    });
+    // Then assign back in order:
+    this->upper_left->set(vertices[0]);
+    this->upper_right->set(vertices[1]);
+    this->lower_right->set(vertices[2]);
+    this->lower_left->set(vertices[3]);
     return shared_from_this();
 }
 
