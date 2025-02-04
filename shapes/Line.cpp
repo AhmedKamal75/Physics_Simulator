@@ -165,20 +165,6 @@ std::shared_ptr<Point> Line::intersection(const std::shared_ptr<Line> other) con
     return std::make_shared<Point>(intersection_x, intersection_y);
 }
 
-// std::shared_ptr<Line> Line::get_perpendicular_line(const std::shared_ptr<Point> point) const{
-//     if (abs(this->get_slope()) <= EPSILON_ERROR) {
-//         return std::make_shared<Line>(point->clone(), 
-//                std::make_shared<Point>(point->get_x(), this->evaluate_y(point->get_x())));
-//     } 
-//     double new_m = -1.0 / this->get_slope();
-//     double new_c = point->get_y() - new_m * point->get_x();
-//     std::shared_ptr<Point> new_start = point->clone();
-//     double new_x = (new_c - this->get_intercept()) / (this->get_slope() - new_m + EPSILON_ERROR);
-//     double new_y = new_m * new_x + new_c;
-//     std::shared_ptr<Point> new_end = std::make_shared<Point>(new_x, new_y);
-//     return std::make_shared<Line>(new_start, new_end);
-// }
-
 std::shared_ptr<Line> Line::get_perpendicular_line(const std::shared_ptr<Point> point) const {
     // Handle horizontal line case correctly.
     if (std::abs(this->get_slope()) < Shape::EPSILON_ERROR) {

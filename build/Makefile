@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+shapes/Circle.o: shapes/Circle.cpp.o
+.PHONY : shapes/Circle.o
+
+# target to build an object file
+shapes/Circle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Circle.cpp.o
+.PHONY : shapes/Circle.cpp.o
+
+shapes/Circle.i: shapes/Circle.cpp.i
+.PHONY : shapes/Circle.i
+
+# target to preprocess a source file
+shapes/Circle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Circle.cpp.i
+.PHONY : shapes/Circle.cpp.i
+
+shapes/Circle.s: shapes/Circle.cpp.s
+.PHONY : shapes/Circle.s
+
+# target to generate assembly for a file
+shapes/Circle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicsSimulator.dir/build.make CMakeFiles/PhysicsSimulator.dir/shapes/Circle.cpp.s
+.PHONY : shapes/Circle.cpp.s
+
 shapes/Line.o: shapes/Line.cpp.o
 .PHONY : shapes/Line.o
 
@@ -261,6 +285,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... shapes/Circle.o"
+	@echo "... shapes/Circle.i"
+	@echo "... shapes/Circle.s"
 	@echo "... shapes/Line.o"
 	@echo "... shapes/Line.i"
 	@echo "... shapes/Line.s"

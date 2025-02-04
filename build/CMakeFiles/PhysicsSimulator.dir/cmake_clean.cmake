@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PhysicsSimulator.dir/main.cpp.o"
   "CMakeFiles/PhysicsSimulator.dir/main.cpp.o.d"
+  "CMakeFiles/PhysicsSimulator.dir/shapes/Circle.cpp.o"
+  "CMakeFiles/PhysicsSimulator.dir/shapes/Circle.cpp.o.d"
   "CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o"
   "CMakeFiles/PhysicsSimulator.dir/shapes/Line.cpp.o.d"
   "CMakeFiles/PhysicsSimulator.dir/shapes/Point.cpp.o"
