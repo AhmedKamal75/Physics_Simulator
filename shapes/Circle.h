@@ -6,15 +6,31 @@
 
 class Circle : public Shape, public std::enable_shared_from_this<Circle> {
     private:
-        std::shared_ptr<Point> center;
+        std::shared_ptr<Point> center{}; // position
+        std::shared_ptr<Point> velocity{};
+        std::shared_ptr<Point> acceleration{};
         double radius;
+        double mass;
+
+
 
     public:
         Circle(std::shared_ptr<Point> center, double radius);
         std::shared_ptr<Point> getCenter() const;
         double getRadius() const;
-        void setCenter(std::shared_ptr<Point> center);
-        void setRadius(double radius);
+        std::shared_ptr<Point> getVelocity() const;
+        std::shared_ptr<Point> getAcceleration() const;
+        double getMass() const;
+        std::shared_ptr<Circle> setCenter(std::shared_ptr<Point> center);
+        std::shared_ptr<Circle> setCenterX(double x);
+        std::shared_ptr<Circle> setCenterY(double y);
+        std::shared_ptr<Circle> setRadius(double radius);
+        std::shared_ptr<Circle> setVelocity(const double x, const double y);
+        std::shared_ptr<Circle> setAcceleration(const double x, const double y);
+        std::shared_ptr<Circle> setVelocity(std::shared_ptr<Point> velocity);
+        std::shared_ptr<Circle> setAcceleration(std::shared_ptr<Point> acceleration);
+        std::shared_ptr<Circle> setMass(double mass);
+        void update_physics(const double delta_time);
         double area() const;
         double circumference() const;
         double diameter() const;

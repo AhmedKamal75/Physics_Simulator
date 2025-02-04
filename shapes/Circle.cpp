@@ -1,7 +1,11 @@
 #include "Circle.h"
 
 
-Circle::Circle(std::shared_ptr<Point> center, double radius) : center(center), radius(radius) {}
+Circle::Circle(std::shared_ptr<Point> center, double radius) : center(center), radius(radius) {
+    this->velocity = std::make_shared<Point>();
+    this->acceleration = std::make_shared<Point>();
+    this->mass = 1.0;
+}
 
 std::shared_ptr<Point> Circle::getCenter() const {
     return center;
@@ -11,13 +15,80 @@ double Circle::getRadius() const {
     return radius;
 }
 
-void Circle::setCenter(std::shared_ptr<Point> center) {
+std::shared_ptr<Circle> Circle::setCenter(std::shared_ptr<Point> center) {
     this->center = center;
+    return shared_from_this();
 }
 
-void Circle::setRadius(double radius) {
-    this->radius = radius;
+std::shared_ptr<Circle> Circle::setCenterX(double x) {
+    this->center->set_x(x);
+    return shared_from_this();
 }
+
+std::shared_ptr<Circle> Circle::setCenterY(double y) {
+    this->center->set_y(y);
+    return shared_from_this();
+}
+
+
+std::shared_ptr<Circle> Circle::setRadius(double radius) {
+    this->radius = radius;
+    return shared_from_this();
+}
+
+std::shared_ptr<Point> Circle::getVelocity() const {
+    return velocity;
+}
+
+std::shared_ptr<Point> Circle::getAcceleration() const {
+    return acceleration;
+}
+
+double Circle::getMass() const{
+    return mass;
+}
+
+std::shared_ptr<Circle> Circle::setVelocity(std::shared_ptr<Point> velocity) {
+    this->velocity = velocity;
+    return shared_from_this();
+}
+
+std::shared_ptr<Circle> Circle::setAcceleration(std::shared_ptr<Point> acceleration) {
+    this->acceleration = acceleration;
+    return shared_from_this();
+}
+
+std::shared_ptr<Circle> Circle::setVelocity(const double x, const double y) {
+    this->velocity->set_x(x);
+    this->velocity->set_y(y);
+    return shared_from_this();
+}
+
+std::shared_ptr<Circle> Circle::setAcceleration(const double x, const double y) {
+    this->acceleration->set_x(x);
+    this->acceleration->set_y(y);
+    return shared_from_this();
+}
+
+std::shared_ptr<Circle> Circle::setMass(double mass) {
+    this->mass = mass;
+    return shared_from_this();
+}
+
+void Circle::update_physics(const double delta_time){
+    if (velocity != nullptr && acceleration != nullptr) {
+        velocity->set_x(velocity->get_x() + acceleration->get_x() * delta_time);
+        velocity->set_y(velocity->get_y() + acceleration->get_y() * delta_time);
+
+        center->set_x(center->get_x() + velocity->get_x() * delta_time);
+        center->set_y(center->get_y() + velocity->get_y() * delta_time);
+
+
+        // velocity->add(acceleration->clone()->multiply(delta_time));
+        // center->add(velocity->clone()->multiply(delta_time));
+    }
+}
+
 
 double Circle::area() const {
     return M_PI * radius * radius;

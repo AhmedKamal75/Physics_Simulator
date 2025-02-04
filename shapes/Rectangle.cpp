@@ -209,3 +209,20 @@ std::shared_ptr<sf::ConvexShape> Rectangle::to_convex_shape(const sf::Color& col
     rectangle->setOutlineThickness(outline_thickness);
     return rectangle;
 }
+
+
+double Rectangle::get_left_boundry() const {
+    return upper_left->get_x();
+}
+
+double Rectangle::get_right_boundry() const {
+    return lower_right->get_x();
+}
+
+double Rectangle::get_top_boundry() const {
+    return upper_left->get_y();
+}
+
+double Rectangle::get_bottom_boundry() const {
+    return lower_right->get_y();
+}

@@ -34,6 +34,10 @@ class Rectangle : public Shape, public std::enable_shared_from_this<Rectangle> {
         std::string to_string() const;
         std::shared_ptr<Point> centroid() const;
         std::shared_ptr<sf::ConvexShape> to_convex_shape(const sf::Color& color_fill, const sf::Color& color_outline, const double outline_thickness) const;
+        double get_left_boundry() const;
+        double get_right_boundry() const;
+        double get_top_boundry() const;
+        double get_bottom_boundry() const;
 };
 
 
