@@ -93,7 +93,3 @@ We welcome contributions:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-**Made with ❤️ and SFML**  
-[![Open in GitHub Codespaces](https://img.shields.io/badge/Open%20in-Codespaces-blue?logo=github)](https://codespaces.new/yourusername/PhysicsSimulator)
-```
